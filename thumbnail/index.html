@@ -1,0 +1,55 @@
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-5 target">
+      </div>
+    </div>
+  </div>
+</body>
+
+<script type="text/jsx">
+  // Classes are usually defined with UpperCamelCase
+  var Badge = React.createClass({
+    render: function() {
+      return <button className="btn btn-primary" type="button">
+        {this.props.title} <span className="badge">{this.props.number}</span>
+      </button>
+    }
+  });
+
+  var Thumbnail = React.createClass({
+    render: function() {
+      return <div className="thumbnail">
+      <img src={this.props.imageUrl} />
+      <div className="caption">
+        <h3>{this.props.header}</h3>
+        <p>{this.props.description}</p>
+        <p>
+          <Badge title={this.props.title} number={this.props.number} />
+        </p>
+      </div>
+    </div>
+    }
+  });
+
+  var options = {
+    title: 'See Tutorials',
+    number: 32,
+    header: 'Learn React',
+    description: 'React is a library for making fast, dynamic pages.' +
+    'React is a library for making fast, dynamic pages.',
+    imageUrl: 'https://facebook.github.io/react/img/logo_og.png'
+  };
+
+  // React, please render this class
+  var element = React.createElement(Thumbnail, options);
+
+  // React, after you render this class, place it in the body tag.
+  React.render(element, document.querySelector('.target'));
+</script>
